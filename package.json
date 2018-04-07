@@ -1,15 +1,15 @@
 {
-  "name": "react-native-audio-streaming-player",
+  "name": "react-native-audio-streaming-player-enhanced",
   "description": "An audio streaming player for React Native",
   "main": "index.js",
-  "author": "Hunkyo Jung <hunkyo.jung@gmail.com>",
-  "version": "0.1.0",
+  "author": "Marco Fontana",
+  "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kyo504/react-native-audio-streaming-player.git"
+    "url": "git+https://github.com/marf/react-native-audio-streaming-player.git"
   },
   "keywords": [
     "react-native",
@@ -18,5 +18,5 @@
     "streaming",
     "player"
   ],
-  "homepage": "https://github.com/kyo504/react-native-audio-streaming-player#readme"
+  "homepage": "https://github.com/marf/react-native-audio-streaming-player#readme"
 }
