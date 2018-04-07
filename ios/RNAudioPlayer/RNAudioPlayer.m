@@ -1,4 +1,3 @@
-
 #import "RNAudioPlayer.h"
 #import <React/RCTBridge.h>
 #import <React/RCTEventDispatcher.h>
@@ -34,8 +33,8 @@ RCT_EXPORT_MODULE();
     if (self) {
         [self registerRemoteControlEvents];
         [self registerAudioInterruptionNotifications];
-        UIImage *defaultArtwork = [UIImage imageNamed:@"default_artwork-t300x300"];
-        albumArt = [[MPMediaItemArtwork alloc] initWithImage: defaultArtwork];
+        //UIImage *defaultArtwork = [UIImage imageNamed:@"default_artwork-t300x300"];
+        //albumArt = [[MPMediaItemArtwork alloc] initWithImage: defaultArtwork];
         center = [MPNowPlayingInfoCenter defaultCenter];
         NSLog(@"AudioPlayer initialized!");
     }
@@ -79,7 +78,7 @@ RCT_EXPORT_METHOD(play:(NSString *)url:(NSDictionary *) metadata) {
     albumUrl = [NSURL URLWithString:albumUrlStr];
     
     // updating lock screen & control center
-    [self setNowPlayingInfo:true];
+    //[self setNowPlayingInfo:false];
     
     NSURL *soundUrl = [[NSURL alloc] initWithString:url];
     self.playerItem = [AVPlayerItem playerItemWithURL:soundUrl];
@@ -136,7 +135,7 @@ RCT_EXPORT_METHOD(seekTo:(int) nSecond) {
         
         [weakSelf.bridge.eventDispatcher sendDeviceEventWithName: @"onPlaybackPositionUpdated"
                                                             body: @{@"currentPosition": @(CMTimeGetSeconds(time)*1000) }];
-        songInfo = @{
+        /*songInfo = @{
                      MPMediaItemPropertyTitle: rapName,
                      MPMediaItemPropertyArtist: songTitle,
                      MPNowPlayingInfoPropertyPlaybackRate: [NSNumber numberWithFloat: 1.0f],
@@ -144,7 +143,7 @@ RCT_EXPORT_METHOD(seekTo:(int) nSecond) {
                      MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSNumber numberWithDouble:self.currentPlaybackTime],
                      MPMediaItemPropertyArtwork: albumArt
                      };
-        center.nowPlayingInfo = songInfo;
+        center.nowPlayingInfo = songInfo;*/
     }];
     
     [self activate];
@@ -164,7 +163,7 @@ RCT_EXPORT_METHOD(seekTo:(int) nSecond) {
         // send player state PAUSED to js
         [self.bridge.eventDispatcher sendDeviceEventWithName: @"onPlaybackStateChanged"
                                                         body: @{@"state": @"PAUSED" }];
-        songInfo = @{
+        /*songInfo = @{
                      MPMediaItemPropertyTitle: rapName,
                      MPMediaItemPropertyArtist: songTitle,
                      MPNowPlayingInfoPropertyPlaybackRate: [NSNumber numberWithFloat: 0.0],
@@ -172,7 +171,7 @@ RCT_EXPORT_METHOD(seekTo:(int) nSecond) {
                      MPNowPlayingInfoPropertyElapsedPlaybackTime: [NSNumber numberWithDouble:self.currentPlaybackTime],
                      MPMediaItemPropertyArtwork: albumArt
                      };
-        center.nowPlayingInfo = songInfo;
+        center.nowPlayingInfo = songInfo;*/
     }
     
     [self deactivate];
@@ -401,7 +400,7 @@ RCT_EXPORT_METHOD(seekTo:(int) nSecond) {
 }
 
 - (void)setNowPlayingInfo:(bool)isPlaying {
-    NSData *data = [NSData dataWithContentsOfURL:albumUrl];
+    /*NSData *data = [NSData dataWithContentsOfURL:albumUrl];
     
     if (data) {
         UIImage *artWork = [UIImage imageWithData:data];
@@ -414,7 +413,8 @@ RCT_EXPORT_METHOD(seekTo:(int) nSecond) {
                  MPNowPlayingInfoPropertyPlaybackRate: [NSNumber numberWithFloat:isPlaying ? 1.0f : 0.0],
                  MPMediaItemPropertyArtwork: albumArt
                  };
-    center.nowPlayingInfo = songInfo;
+    center.nowPlayingInfo = songInfo;*/
 }
+
 
 @end
